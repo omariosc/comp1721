@@ -1,0 +1,31 @@
+#!/bin/bash
+# Script to assist with COMP1721 coursework submission
+
+if [[ $1 != cwk1 && $1 != cwk2 ]]; then
+  echo "Usage: ./notfinished cwk1  (to stop flagging Coursework 1 as finished)"
+  echo "       ./notfinished cwk2  (to do same for Coursework 2)"
+  exit 1
+fi
+
+# Warn user what script will do
+
+echo
+echo "This will remove the $1 tag from your repository."
+echo "Your solution for $1 will no longer be flagged as finished."
+echo
+
+# Give user the option to abort
+
+read -p "Do you wish to proceed? (y/n) " -n 1 reply
+echo
+echo
+
+if [[ $reply != [Yy] ]]; then
+  echo "Process aborted."
+  exit 2
+fi
+
+# Remove tag
+
+git tag -d $1
+git push origin :refs/tags/$1

@@ -1,0 +1,102 @@
+#!/bin/bash
+# Script to assist with COMP1722 coursework submission
+
+if [[ $1 != cwk1 && $1 != cwk2 ]]; then
+  echo "Usage: ./finished cwk1  (to flag Coursework 1 as finished)"
+  echo "       ./finished cwk2  (to do same for Coursework 2)"
+  exit 1
+fi
+
+# Warn user what script will do
+
+echo
+echo "This will push any outstanding commits to GitLab and tag"
+echo "your most recent commit as your solution for $1."
+echo
+echo "It will also trigger testing of your solution in GitLab."
+echo "Your mark will be based on the results of these tests."
+echo
+echo "Finally, it will generate a Zip archive containing your code."
+echo "This Zip archive MUST be uploaded to Minerva in order to"
+echo "formally submit $1; you will be penalised if you forget"
+echo "to do this!"
+echo
+
+# Report on repository status
+
+untracked="$(git ls-files --exclude-standard --others)"
+
+git diff-files --quiet
+unstaged=$?
+
+git diff-index --quiet --cached HEAD
+uncommitted=$?
+
+if [[ $untracked != "" ]]; then
+  echo "NOTE: you have untracked files in this repository."
+fi
+if [[ $unstaged != 0 ]]; then
+  echo "NOTE: you have unstaged changes in this repository."
+fi
+if [[ $uncommitted != 0 ]]; then
+  echo "NOTE: you have staged but uncommitted changes in this repository."
+fi
+
+# Give user the option to abort
+
+echo
+read -p "Do you wish to proceed? (y/n) " -n 1 reply
+echo
+echo
+
+if [[ $reply != [Yy] ]]; then
+  echo "Process aborted."
+  exit 2
+fi
+
+# Flag latest commit as coursework solution
+
+echo "Attempting to push outstanding commits..."
+
+git push origin main
+if [[ $? != 0 ]]; then
+  echo "Push failed - process aborted."
+  exit 3
+fi
+
+echo
+echo "Tagging last commit and pushing tag to GitLab..."
+
+git tag -a $1 -m "$1 solution"
+if [[ $? != 0 ]]; then
+  echo "Tagging failed - process aborted."
+  exit 4
+fi
+
+git push origin $1
+if [[ $? != 0 ]]; then
+  echo "Tag push failed - process aborted."
+  exit 5
+fi
+
+# Create Zip archive
+
+echo
+echo "Running Gradle to create Zip archive for Minerva..."
+
+cd coursework/$1
+zipfile="$1.zip"
+rm -f $zipfile
+./gradlew submit
+if [[ $? != 0 ]]; then
+  echo
+  echo "Failed to create Zip archive."
+  echo "You should create it manually and upload to Minerva."
+  echo
+  exit 6
+fi
+
+echo
+echo "$zipfile has been created in the $1 directory."
+echo "To formally submit, you MUST upload this file to Minerva."
+echo

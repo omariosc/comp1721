@@ -1,0 +1,15 @@
+image: gradle:6.8.0-jdk15
+
+cwk1:
+  only:
+    - /^cwk1/
+  script:
+    - cd coursework/cwk1
+    - gradle :core:test
+
+cwk2:
+  only:
+    - /^cwk2/
+  script:
+    - cd coursework/cwk2
+    - gradle :core:test
