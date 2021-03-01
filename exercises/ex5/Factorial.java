@@ -2,12 +2,10 @@
 // when using int, can compute up to 33! (negative output), up to 19! (positive output)
 // when using long, can compute up to 65! (negative output), up to 21! (positive output)
 
-import java.util.Scanner;
 import java.math.*;
 
 class Factorial {
   public static void main(String[] args) {
-    Scanner input = new Scanner(System.in); // creates the scanner
     if (args == null || args.length == 0) { // if user does not pass a number
       System.out.println("Error: no value supplied."); // outputs error message
       System.exit(1); // exits program
@@ -21,6 +19,5 @@ class Factorial {
       }
     }
     System.out.printf("%d! = %d", n, factorial); // outputs factorial
-    input.close(); // closes the scanner  
   } // end of main
 } // end of class Factorial
