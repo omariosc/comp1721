@@ -8,7 +8,7 @@ public class RectTest {
   public static void main(String[] args) {
     Scanner input = new Scanner(System.in); // creates the scanner
     System.out.print("Enter rectangle width: "); // outputs prompt
-    try {
+    try { // if no exceptions
       double width = input.nextDouble(); // stores input width
       System.out.print("Enter rectangle height: "); // outputs prompt
       double height = input.nextDouble(); // stores input height
@@ -20,7 +20,8 @@ public class RectTest {
       System.out.println("Error: invalid height (must be > 0)"); // outputs error message
     } catch (Exception e) {
       System.out.println("Error: numbers required for width and height!"); // outputs error
-    } 
-    input.close(); // closes the scanner
+    } finally { // always runs
+      input.close(); // closes the scanner
+    }
   } // end of main
 } // end of class RectTest
