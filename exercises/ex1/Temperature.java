@@ -1,7 +1,5 @@
 // Converts input fom user and converts from Fahrenheit to Celsius
 
-package exercises.ex1;
-
 import java.util.Scanner;
 
 class Temperature {

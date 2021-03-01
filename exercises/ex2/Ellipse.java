@@ -1,7 +1,5 @@
 // Computes area and eccentricity of an ellipse using user input lengths
 
-package exercises.ex2;
-
 import java.util.Scanner;
 
 class Ellipse {

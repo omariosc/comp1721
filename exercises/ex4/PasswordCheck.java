@@ -1,7 +1,5 @@
 // Pasword checker
 
-package exercises.ex4;
-
 import java.util.Scanner;
 
 class PasswordCheck {
