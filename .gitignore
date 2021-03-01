@@ -31,3 +31,4 @@ out/
 # Gradle stuff
 .gradle/
 build/
+.vscode/
