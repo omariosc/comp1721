@@ -11,27 +11,45 @@ public class Rectangle {
     this(1.0, 1.0); // calls the two parameter constructor
   }
 
+   /**
+   * Creates a rectangle with width and height.
+   *
+   * @param w Value for width
+   * @param h Value for height
+   */ 
   // constructor that initialises a Rectangle object (specific)
   public Rectangle(double w, double h) {
-    this.width = w;
-    this.height = h;
+    setWidth(w);
+    setHeight(h);
   }
 
-  public double getWidth() { // returns width
+  /**
+   * @return Width component of this Rectangle
+   */
+  public double getWidth() {
     return width;
-  } // end of getWidth
+  }
 
-  public double getHeight() { // returns height
+  /**
+   * @return Height component of this Rectangle
+   */
+  public double getHeight() {
     return height;
-  } // end of getHeight
+  }
 
-  public double area() { // returns area
+  /**
+   * @return Area of Rectangle
+   */
+  public double area() {
     return width*height;
-  } // end of area
+  }
 
-  public double perimeter() { // returns perimeter
+  /**
+   * @return Perimeter of Rectangle
+   */
+  public double perimeter() {
     return 2*(width+height);
-  } // end of perimeter
+  }
 
   // toString method, providing a string representation of a rectangle
   // called automatically when printing a Rectangle object
@@ -39,6 +57,23 @@ public class Rectangle {
   @Override
   public String toString() {
     return String.format("Rectangle: %.3f x %.3f", width, height);
-  } // end of toString method
-  
+  }
+
+  // Private helper methods
+
+  private void setWidth(double w) {
+    if (w <= 0) {
+      throw new IllegalArgumentException("Error: invalid width (must be > 0)");
+    }
+
+    width = w; // assignment only happens if there is no exception
+  }
+
+  private void setHeight(double h) {
+    if (h <= 0) {
+      throw new IllegalArgumentException("Error: invalid height (must be > 0)");
+    }
+
+    height = h; // assignment only happens if there is no exception
+  }
 } // end of class Rectangle
