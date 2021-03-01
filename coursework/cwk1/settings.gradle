@@ -1,0 +1,5 @@
+rootProject.name = 'comp1721_cwk1'
+include 'core'
+include 'app'
+// Uncomment line below to work on advanced task
+include 'chart'
