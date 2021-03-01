@@ -11,12 +11,12 @@ public class Rectangle {
     this(1.0, 1.0); // calls the two parameter constructor
   }
 
-   /**
-   * Creates a rectangle with width and height.
-   *
-   * @param w Value for width
-   * @param h Value for height
-   */ 
+  /**
+  * Creates a rectangle with width and height.
+  *
+  * @param w Value for width
+  * @param h Value for height
+  */ 
   // constructor that initialises a Rectangle object (specific)
   public Rectangle(double w, double h) {
     setWidth(w);
