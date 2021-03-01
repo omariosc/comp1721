@@ -4,7 +4,7 @@ package exercises.ex1;
 
 import java.util.Scanner;
 
-class TemperatureConvert {
+class Temperature {
   public static void main(String[] args) {
     Scanner input = new Scanner(System.in); // creates the scanner
     System.out.print("Enter Fahrenheit temperature: "); // outputs prompt 
@@ -13,4 +13,4 @@ class TemperatureConvert {
     System.out.println("Equivalent Celsius temperature = " + celsiusTemperature); // outputs celsius temperature
     input.close(); // closes the scanner
   } // end of main ()
-} // end of class TemperatureConvert
+} // end of class Temperature
