@@ -13,11 +13,18 @@ import java.io.IOException;
 
 public class CovidDataset {
 
-  // private field to represent array of records
+  // private list to represent array of records
   private List<CaseRecord> data = new ArrayList<>();
 
   public CovidDataset() {
     // intialised data set as array outside constructor
+  }
+
+  /**
+   * @return data for use in CovidChat
+   */
+  public List<CaseRecord> getData() {
+    return data;
   }
 
   /**
