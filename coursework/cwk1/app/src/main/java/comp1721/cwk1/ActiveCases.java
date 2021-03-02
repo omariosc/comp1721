@@ -16,6 +16,7 @@ public class ActiveCases {
       System.exit(2);
     }
 
+    // creates new dataset
     CovidDataset dataset = new CovidDataset();
     
     try {
@@ -36,5 +37,5 @@ public class ActiveCases {
       // terminates program
       System.exit(2);
     }
-  }
-}
+  } // end of main
+} // end of class ActiveCases
