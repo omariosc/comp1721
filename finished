@@ -87,7 +87,7 @@ echo "Running Gradle to create Zip archive for Minerva..."
 cd coursework/$1
 zipfile="$1.zip"
 rm -f $zipfile
-./gradlew submit
+./gradlew submission
 if [[ $? != 0 ]]; then
   echo
   echo "Failed to create Zip archive."
