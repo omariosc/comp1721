@@ -27,7 +27,7 @@ application {
 
 javafx {
   // Change version to '15' if using Java 15
-  version = '11'
+  version = '15'
   modules = [ 'javafx.controls' ]
 }
 
