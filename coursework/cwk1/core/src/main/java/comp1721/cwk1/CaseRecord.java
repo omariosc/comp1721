@@ -79,11 +79,11 @@ public class CaseRecord extends CovidDataset {
 
   // Private helper methods
 
-  public void setDate(LocalDate date) {
+  private void setDate(LocalDate date) {
     this.date = date;
   }
   
-  public void setStaffCases(int staffCases) {
+  private void setStaffCases(int staffCases) {
     if (staffCases >= 0) { // validates number of staff cases
       this.staffCases = staffCases;
     } else {
@@ -91,7 +91,7 @@ public class CaseRecord extends CovidDataset {
     }
   }
 
-  public void setStudentCases(int studentCases) {
+  private void setStudentCases(int studentCases) {
     if (studentCases >= 0) { // validates number of student cases
       this.studentCases = studentCases;
     } else {
@@ -99,7 +99,7 @@ public class CaseRecord extends CovidDataset {
     }   
   }
 
-  public void setOtherCases(int otherCases) {
+  private void setOtherCases(int otherCases) {
     if (otherCases >= 0) { // validates number of other cases
       this.otherCases = otherCases;
     } else {
