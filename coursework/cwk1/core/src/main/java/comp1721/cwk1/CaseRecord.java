@@ -13,6 +13,10 @@ public class CaseRecord extends CovidDataset {
   private int studentCases;
   private int otherCases;
 
+  // private fields used for CovidChart
+  private int dayOfYear;
+  private int totalActiveCases;
+
   /**
    * Creates a Case Record using date and cases for staff, student and others.
    *
@@ -26,6 +30,17 @@ public class CaseRecord extends CovidDataset {
     setStaffCases(staff);
     setStudentCases(student);
     setOtherCases(other);
+  }
+
+  /**
+   * Creates a case record using day of the year for the CovidChart class
+   * 
+   * @param d Value for date of the year of case
+   * @param cases Value for total number of cases
+   */
+  public CaseRecord(int d, int cases) {
+    this.dayOfYear = d;
+    this.totalActiveCases = cases;
   }
 
   /**
@@ -55,12 +70,26 @@ public class CaseRecord extends CovidDataset {
   public int getOtherCases() {
     return otherCases;
   }
-  
+
   /**
    * @return Total number of cases
    */
   public int totalCases() {
     return staffCases + studentCases + otherCases;
+  }
+  
+  /**
+   * @return Day of the Year component of case record for CovidChart
+   */
+  public int getDayOfYear() {
+    return dayOfYear;
+  }
+
+  /**
+   * @return Total number of cases
+   */
+  public int getTotalActiveCases() {
+    return totalActiveCases;
   }
   
   /**
