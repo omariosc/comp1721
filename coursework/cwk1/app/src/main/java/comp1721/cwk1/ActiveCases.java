@@ -23,6 +23,8 @@ public class ActiveCases {
       dataset.readDailyCases(args[0]);
       // writes daily cases to second file
       dataset.writeActiveCases(args[1]);
+      // outputs number of records in CovidDataset
+      System.out.println("Number of records in the dataset: " + dataset.size());
     } catch (IOException error) {
       // outputs error message
       System.err.println("Error: cannot access files");
