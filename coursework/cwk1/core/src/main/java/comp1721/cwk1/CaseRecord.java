@@ -83,9 +83,8 @@ public class CaseRecord extends CovidDataset {
     this.date = date;
   }
   
-
   public void setStaffCases(int staffCases) {
-    if (staffCases >= 0) {
+    if (staffCases >= 0) { // validates number of staff cases
       this.staffCases = staffCases;
     } else {
       throw new DatasetException("Error: staff cases should be >= 0");
@@ -93,7 +92,7 @@ public class CaseRecord extends CovidDataset {
   }
 
   public void setStudentCases(int studentCases) {
-    if (studentCases >= 0) {
+    if (studentCases >= 0) { // validates number of student cases
       this.studentCases = studentCases;
     } else {
       throw new DatasetException("Error: student cases should be >= 0");
@@ -101,7 +100,7 @@ public class CaseRecord extends CovidDataset {
   }
 
   public void setOtherCases(int otherCases) {
-    if (otherCases >= 0) {
+    if (otherCases >= 0) { // validates number of other cases
       this.otherCases = otherCases;
     } else {
       throw new DatasetException("Error: other cases should be >= 0");
