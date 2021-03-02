@@ -10,10 +10,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.List;
 
+import static org.hamcrest.Matchers.anyOf;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -79,10 +81,11 @@ public class Full {
   }
 
   @Test
-  @DisplayName("FileNotFoundException if CSV file cannot be found")
+  @DisplayName("Suitable exception if CSV file cannot be found")
   public void readDailyCasesMissingFile() {
-    assertThrows(FileNotFoundException.class,
+    Throwable t = assertThrows(IOException.class,
       () -> dataset.readDailyCases("non-existent-file.csv"));
+    assertThat(t.getClass(), anyOf(is(FileNotFoundException.class), is(NoSuchFileException.class)));
   }
 
   @Test
