@@ -21,11 +21,11 @@ public class CaseRecord extends CovidDataset {
    * @param student Value for number of student cases
    * @param other Value for number of other cases
    */
-  public CaseRecord(LocalDate date, int staffCases, int studentCases, int otherCases) {
-    setDate(date);
-    setStaffCases(staffCases);
-    setStudentCases(studentCases);
-    setOtherCases(otherCases);
+  public CaseRecord(LocalDate d, int staff, int student, int other) {
+    setDate(d);
+    setStaffCases(staff);
+    setStudentCases(student);
+    setOtherCases(other);
   }
 
   /**
@@ -74,34 +74,38 @@ public class CaseRecord extends CovidDataset {
   @Override
   public String toString() {
     String formatDate = date.toString();
-    return String.format("%s: %d staff, %d students, %d other", formatDate, staffCases, studentCases, otherCases);
+    return String.format("%s: %d staff, %d students, %d other", 
+    formatDate, staffCases, studentCases, otherCases);
   }
 
   // Private helper methods
 
-  private void setDate(LocalDate date) {
-    this.date = date;
+  private void setDate(LocalDate d) {
+    this.date = d;
   }
   
-  private void setStaffCases(int staffCases) {
-    if (staffCases >= 0) { // validates number of staff cases
-      this.staffCases = staffCases;
+  private void setStaffCases(int staff) {
+    // validates number of staff cases
+    if (staff >= 0) {
+      this.staffCases = staff;
     } else {
       throw new DatasetException("Error: staff cases should be >= 0");
     }
   }
 
-  private void setStudentCases(int studentCases) {
-    if (studentCases >= 0) { // validates number of student cases
-      this.studentCases = studentCases;
+  private void setStudentCases(int student) {
+    // validates number of student cases
+    if (student >= 0) {
+      this.studentCases = student;
     } else {
       throw new DatasetException("Error: student cases should be >= 0");
     }   
   }
 
-  private void setOtherCases(int otherCases) {
-    if (otherCases >= 0) { // validates number of other cases
-      this.otherCases = otherCases;
+  private void setOtherCases(int other) {
+    // validates number of other cases
+    if (other >= 0) {
+      this.otherCases = other;
     } else {
       throw new DatasetException("Error: other cases should be >= 0");
     }
