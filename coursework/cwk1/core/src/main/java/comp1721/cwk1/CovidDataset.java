@@ -9,32 +9,54 @@ public class CovidDataset {
 
   }
 
-  // TODO: Write stub for size()
+  /**
+   * @return Size of the dataset
+   */
   public int size() {
     return 0;
   }
 
-  // TODO: Write stub for getRecord()
+  /**
+   * @param index Specific index
+   * @return CaseRecord given specific index
+   */
   public CaseRecord getRecord(int index) {
     return null;
   }
 
-  // TODO: Write stub for addRecord()
+  /**
+   * Adds a record.
+   * 
+   * @param rec CaseRecord to add
+   */
   public void addRecord(CaseRecord rec) {
     
   }
 
-  // TODO: Write stub for dailyCasesOn()
+  /**
+   * Retrieves case record given a specific day.
+   * 
+   * @param day Specific day
+   * @return CaseRecord relating to specific dat
+   */
   public CaseRecord dailyCasesOn(LocalDate day) {
     return null;
   }
 
-  // TODO: Write stub for readDailyCases()
+  /**
+   * Reads all cases in the file.
+   * 
+   * @param filename Name of file to read from
+   */
   public void readDailyCases(String filename) {
 
   }
 
-  // TODO: Write stub for writeActiveCases()
+  /**
+   * Writes all cases to the file
+   * 
+   * @param filename Name of file to write to
+   */
   public void writeActiveCases(String filename) {
 
   }
