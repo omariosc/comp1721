@@ -22,8 +22,11 @@ public class CaseRecord {
    * @param student Value for number of student cases
    * @param other Value for number of other cases
    */
-  public CaseRecord(LocalDate d, int staff, int student, int other) {
-    
+  public CaseRecord(LocalDate date, int staffCases, int studentCases, int otherCases) {
+    setDate(date);
+    setStaffCases(staffCases);
+    setStudentCases(studentCases);
+    setOtherCases(otherCases);
   }
 
   /**
@@ -71,8 +74,39 @@ public class CaseRecord {
    */
   @Override
   public String toString() {
-    date.format(DateTimeFormatter.ofPattern("yyyy-mm-dd"));
-    return String.format("%s: %d staff, %d students, %d other", date, staffCases, studentCases, otherCases);
+    String formatDate = date.toString();
+    return String.format("%s: %d staff, %d students, %d other", formatDate, staffCases, studentCases, otherCases);
+  }
+
+  // Private helper methods
+
+  public void setDate(LocalDate date) {
+    this.date = date;
+  }
+  
+
+  public void setStaffCases(int staffCases) {
+    if (staffCases >= 0) {
+      this.staffCases = staffCases;
+    } else {
+      throw new DatasetException("Error: staff cases should be >= 0");
+    }
+  }
+
+  public void setStudentCases(int studentCases) {
+    if (studentCases >= 0) {
+      this.studentCases = studentCases;
+    } else {
+      throw new DatasetException("Error: student cases should be >= 0");
+    }   
+  }
+
+  public void setOtherCases(int otherCases) {
+    if (otherCases >= 0) {
+      this.otherCases = otherCases;
+    } else {
+      throw new DatasetException("Error: other cases should be >= 0");
+    }
   }
 
 } // end of class CaseRecord
