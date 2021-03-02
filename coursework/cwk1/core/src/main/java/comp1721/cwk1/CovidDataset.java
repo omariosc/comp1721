@@ -17,7 +17,7 @@ public class CovidDataset {
   private List<CaseRecord> data = new ArrayList<>();
 
   public CovidDataset() {
-
+    // intialised data set as array outside constructor
   }
 
   /**
@@ -35,7 +35,8 @@ public class CovidDataset {
    * @throws DatasetException
    */
   public CaseRecord getRecord(int index) throws DatasetException {
-    if (index >= 0 && index < size()) { // validates index value
+    // validates index value
+    if (index >= 0 && index < size()) {
       return data.get(index);
     }
     else {
@@ -60,7 +61,9 @@ public class CovidDataset {
    * @throws DatasetException
    */
   public CaseRecord dailyCasesOn(LocalDate day) throws DatasetException {
+    // iterates through records in data list
     for (CaseRecord element : data) {
+      // if date matches with specified day
       if (element.getDate() == day) {
         return element;    
       }
@@ -75,15 +78,22 @@ public class CovidDataset {
    * @param filename Name of file to read from
    * @throws IOException
    */
-  public void readDailyCases(String filename) throws IOException {
-    BufferedReader reader = null;
-    try {
-      reader = new BufferedReader(new FileReader(filename));
+  public void readDailyCases(String filename) throws FileNotFoundException, DatasetException {
+    try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
       String line;
-      String[] header = reader.readLine().split(","); // reads header line
+
+      // reads header line
+      String[] header = reader.readLine().split(",");
+
+      // clears the data list
       data.clear();
+      
+      // reads through every line
       while ((line = reader.readLine()) != null) {
+        // splits on a comma delimiter
         String[] fields = line.split(",");
+
+        // stores all fields as values for the CaseRecord
         LocalDate date = LocalDate.parse(fields[0]);
         int staffCases = Integer.parseInt(fields[1]);
         int studentCases = Integer.parseInt(fields[2]);
@@ -91,12 +101,12 @@ public class CovidDataset {
         CaseRecord record = new CaseRecord(date, staffCases, studentCases, otherCases);
         data.add(record);
       }
+
+    // exception handling 
     } catch (FileNotFoundException exception) {
       throw new FileNotFoundException("Error: invalid file");
     } catch (Exception e) {
-      throw new DatasetException("Error: invalid file");
-    } finally {
-      if (reader != null) reader.close();
+      throw new DatasetException("Error: invalid data set");
     }
   }
 
@@ -107,33 +117,53 @@ public class CovidDataset {
    * @throws IOException
    */
   public void writeActiveCases(String filename) throws IOException {
-    BufferedWriter writer = null;
+    
+    // used to build string to store in csv file
     StringBuilder sb = new StringBuilder();
+    
+    // retrieves size of data list
     int size = size();
     if (size < 11) {
       throw new DatasetException("Error: dataset too small");
     }
-    try {
-      writer = new BufferedWriter(new FileWriter(filename));
+    
+    // attempts to write into csv file
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))){
       sb.append("Date,Staff,Students,Other\n");
-      int day = 0; // keeps track of the number of days
+      
+      // keeps track of the number of days
+      int day = 0;
+      
       // stores number of active cases
       int activeStaff = 0;
       int activeStudent = 0;
       int activeOther = 0;
+      
+      // iterates through every CaseRecord element in the data list
       for (CaseRecord element : data) {
+
+        // retrives all values for the CaseRecord
         LocalDate date = element.getDate();
         int staffCases = element.getStaffCases();
         int studentCases = element.getStudentCases();
         int otherCases = element.getOtherCases();
         String formatDate = date.toString();
+
+        // adds the the number of cases to the active count
         activeStaff += staffCases;
         activeStudent += studentCases;
         activeOther += otherCases;
+
+        // increments the day
         day++;
+
+        // active cases must be at least for 10 days
         if (day >= 10) {
-          String values = String.format("%s,%d,%d,%d%n", formatDate, activeStaff, activeStudent, activeOther);
+          String values = String.format("%s,%d,%d,%d%n",
+          formatDate, activeStaff, activeStudent, activeOther);
           sb.append(values);
+
+          // subtracts the oldest record in the active cases count
           CaseRecord oldRecord = data.get(day-10);
           int oldStaff = oldRecord.getStaffCases();
           int oldStudent = oldRecord.getStudentCases();
@@ -143,9 +173,8 @@ public class CovidDataset {
           activeOther -= oldOther;
         }
       }
+      // writes string to file
       writer.write(sb.toString());
-    } finally {
-      if (writer != null) writer.close();
     }
   }
 
