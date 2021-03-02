@@ -30,40 +30,35 @@ public class CaseRecord {
    * @return Date component of case record
    */
   public LocalDate getDate() {
-    // return date;
-    return null;
+    return date;
   }
 
   /**
    * @return Staff cases component of case record
    */
   public int getStaffCases() {
-    // return staffCases;
-    return 0;
+    return staffCases;
   }
 
   /**
    * @return Student cases component of case record
    */
   public int getStudentCases() {
-    // return studentCases;
-    return 0;
+    return studentCases;
   }
 
   /**
    * @return Other cases component of case record
    */
   public int getOtherCases() {
-    // return otherCases;
-    return 0;
+    return otherCases;
   }
   
   /**
    * @return Total number of cases
    */
   public int totalCases() {
-    // return staffCases + studentCases + otherCases;
-    return 0;
+    return staffCases + studentCases + otherCases;
   }
   
   /**
@@ -76,9 +71,8 @@ public class CaseRecord {
    */
   @Override
   public String toString() {
-    // date.format(DateTimeFormatter.ofPattern("yyyy-mm-dd"));
-    // return String.format("%s: %d staff, %d students, %d other", date, staffCases, studentCases, otherCases);
-    return null;
+    date.format(DateTimeFormatter.ofPattern("yyyy-mm-dd"));
+    return String.format("%s: %d staff, %d students, %d other", date, staffCases, studentCases, otherCases);
   }
 
-}
+} // end of class CaseRecord
