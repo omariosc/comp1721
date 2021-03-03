@@ -14,10 +14,13 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.stage.Stage;
 
-public class CovidChart {
+public class CovidChart extends Application {
 
   // private object to represent data set
   private static CovidDataset dataset = new CovidDataset();
+
+  // private field for filename
+  private static String filename;
 
   // private list to represent array of active cases
   private static List<CaseRecord> activeData = new ArrayList<>();
@@ -36,8 +39,10 @@ public class CovidChart {
     try {
       // reads daily cases from file
       dataset.readDailyCases(args[0]);
+      // sets filename for chart
+      filename = args[0];
       loadActiveCases();
-      createLineChart();
+      launch(args);
     } catch (IOException error) {
       // outputs error message
       System.err.println("Error: cannot access files");
@@ -99,17 +104,53 @@ public class CovidChart {
         int oldStaff = oldRecord.getStaffCases();
         int oldStudent = oldRecord.getStudentCases();
         int oldOther = oldRecord.getOtherCases();
-        activeCases -= oldStaff - oldStudent - oldOther;
+        activeCases = activeCases - oldStaff - oldStudent - oldOther;
       }
     }
   }
 
   /**
-   * Creates a line chart based on activeData Active cases stored on y-axis Day of
-   * the year stored on x-axis
+   * Creates a line chart based on activeData Active cases stored on y-axis 
+   * Day of the year stored on x-axis
    */
-  private static void createLineChart() {
+  @Override
+  public void start(Stage stage) throws Exception {
     
+    // sets window title
+    stage.setTitle("COMP1721 Coursework 1");
+    
+    // defining the axes
+    final NumberAxis xAxis = new NumberAxis(280, 350, 5);
+    final NumberAxis yAxis = new NumberAxis();
+    xAxis.setLabel("Day of Year");
+    yAxis.setLabel("Active Cases");
+    
+    //creating the chart
+    final LineChart<Number,Number> lineChart = new LineChart<Number,Number>(xAxis,yAxis);
+
+    // setts chart title
+    lineChart.setTitle("Active Coronavirus Cases, University of Leeds");
+
+    // defining a series
+    XYChart.Series series = new XYChart.Series();
+    series.setName(filename);
+    
+    // populating the series with data
+    series.getData().add(new XYChart.Data(1, 23));
+
+    for (CaseRecord record : activeData) {
+      series.getData().add(new XYChart.Data(record.getDayOfYear(), record.getTotalActiveCases()));
+    }
+
+    // sets size of window
+    Scene scene  = new Scene(lineChart,800,600);
+    // ads data values without symbols
+    lineChart.getData().add(series);
+    lineChart.setCreateSymbols(false);
+
+    // outputs window with chart
+    stage.setScene(scene);
+    stage.show();
   }
 
 } // end of class CovidChart
