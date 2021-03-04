@@ -5,7 +5,7 @@ package comp1721.cwk1;
 
 import java.time.LocalDate;
 
-public class CaseRecord {
+public class CaseRecord extends CovidDataset {
   
   // private fields to represent date and number of cases for case
   private LocalDate date;
