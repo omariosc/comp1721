@@ -8,7 +8,7 @@ public class SavingsTest {
     System.out.println(acc);
     acc.withdraw(100);
     System.out.println(acc);
-    acc.withdraw(100); // take balance to 0 if successful withdrawal
+    // acc.withdraw(100); // take balance to 0 if successful withdrawal
     System.out.println(acc);
     acc.applyInterest();
     System.out.println(acc);
