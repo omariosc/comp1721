@@ -13,15 +13,15 @@ public class BaccaratCard extends Card {
   /**
    * Creates a Baccarat Card object.
    *
-   * @param r Rank of the Baccaratcard
-   * @param s Suit of the Baccaratcard
+   * @param r Rank of the Baccarat card
+   * @param s Suit of the Baccarat card
    */
   public BaccaratCard(Rank r, Suit s) {
     super(r, s);
   }
 
   /**
-   * Provides the rank of this Baccaratcard.
+   * Provides the rank of this Baccarat card.
    *
    * @return The rank
    */
@@ -31,7 +31,7 @@ public class BaccaratCard extends Card {
   }
 
   /**
-   * Provides the suit of this Baccaratcard.
+   * Provides the suit of this Baccarat card.
    *
    * @return The suit
    */
@@ -81,7 +81,7 @@ public class BaccaratCard extends Card {
    * Computes the value of this Baccarat card.
    *
    * <p>Value is based on rank and disregards suit. Aces score 1
-   * and picture cards all score 10.</p>
+   * and picture cards all score 0.</p>
    *
    * @return Baccarat card value
    */
