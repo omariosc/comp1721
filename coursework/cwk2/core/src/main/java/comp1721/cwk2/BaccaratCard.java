@@ -10,37 +10,86 @@ public class BaccaratCard extends Card {
   private Rank rank;
   private Suit suit;
 
+  /**
+   * Creates a Baccarat Card object.
+   *
+   * @param r Rank of the Baccaratcard
+   * @param s Suit of the Baccaratcard
+   */
   public BaccaratCard(Rank r, Suit s) {
     super(r, s);
   }
 
+  /**
+   * Provides the rank of this Baccaratcard.
+   *
+   * @return The rank
+   */
   @Override
   public final Rank getRank() {
-    return null;
+    return super.getRank();
   }
 
+  /**
+   * Provides the suit of this Baccaratcard.
+   *
+   * @return The suit
+   */
   @Override
   public final Suit getSuit() {
-    return null;
+    return super.getSuit();
   }
 
+  /**
+   * Creates a two-character string representation of this Baccarat card.
+   *
+   * <p>The first character represents rank, the second represents suit.
+   * Special Unicode symbols will be used for the latter if
+   * <code>Card.fancySymbols</code> is set to <code>true</code>.</p>
+   *
+   * @return String representation of this card
+   */
   @Override
   public String toString() {
-    return null;
+    return super.toString();
   }
 
+  /**
+   * Tests whether this Baccarat card is equal to another object.
+   *
+   * @param other Object with which this Baccarat card is being compared
+   * @return true if thing is equal to this Baccarat card, false otherwise
+   */
   @Override
   public boolean equals(Object other) {
-    return true;
+    return super.equals(other);
   }
 
+  /**
+   * Compares this Baccarat card to another, using their natural ordering
+   * (by suit, then by rank).
+   *
+   * @return A negative integer if this card comes before the other, 0 if
+   *   they are the same, a positive integer if this card comes after
+   */
   @Override
   public final int compareTo(Card other) {
-    return 0;
+    return super.compareTo(other);
   }
 
+  /**
+   * Computes the value of this Baccarat card.
+   *
+   * <p>Value is based on rank and disregards suit. Aces score 1
+   * and picture cards all score 10.</p>
+   *
+   * @return Baccarat card value
+   */
   @Override
   public final int value() {
-    return 0;
+    int value = super.value();
+    // Value of face cards are 0
+    if (value == 10) { value = 0; }
+    return value;
   }
 }
