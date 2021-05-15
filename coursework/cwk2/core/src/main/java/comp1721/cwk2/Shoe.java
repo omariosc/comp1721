@@ -23,19 +23,25 @@ public class Shoe {
    * @throws CardException If value for deck is not 6 or 8
    */
   public Shoe(int decks) throws CardException {
+    // Checks that decks are of correct value
     if (decks == 6 || decks == 8) {
+      // Creates shoe as a linked list
       baccaratShoe = new LinkedList<>();
-      var cardIndex = 0;
+      // Iterates through decks
       for (var i = 0; i < decks; i++) {
+        // Iterates through suits
         for (Suit cardSuit : Suit.values()) {
+          // Iterates through ranks
           for (Rank cardRank : Rank.values()) {
-            baccaratShoe.add(cardIndex, new BaccaratCard(cardRank, cardSuit));
-            cardIndex++;
+            // Adds card to shoe
+            baccaratShoe.add(new BaccaratCard(cardRank, cardSuit));
           }
         }
-      }
+      } 
     }
+    // If decks are not of correct value
     else {
+      // Throws CardException
       throw new CardException("Error: Invalid deck size. Must be 6 or 8.");
     }
   }
@@ -50,10 +56,10 @@ public class Shoe {
   }
   
   /**
-   * Ensures that a shoe stores the specified number of complete decks of BaccaratCard objects.
-   * 
+   * Reorders the cards in the shoe randomly 
    */
   public void shuffle() {
+    // Uses Collections class to shuffle shoe
     Collections.shuffle(baccaratShoe);
   }
 
@@ -61,15 +67,21 @@ public class Shoe {
    * Removes the fisrt stored card and returns it to the caller
    * 
    * @return Card to be dealt
-   * @throws CardException If size of deck is 0
+   * @throws CardException If size of shoe is 0
    */
   public Card deal() throws CardException {
+    // If there exists a card within the shoe
     if (size() != 0) {
+      // Stores the first card in the shoe
       var card = baccaratShoe.get(0);
+      // Removes the card from the shoe
       baccaratShoe.remove(0);
+      // Returns the stored card
       return card;
     }
+    // If there are no more cards in the shoe
     else {
+      // Throws CardException
       throw new CardException("Error: Deck contains no more cards.");
     }
   }
