@@ -43,10 +43,6 @@ public class BaccaratCard extends Card {
   /**
    * Creates a two-character string representation of this Baccarat card.
    *
-   * <p>The first character represents rank, the second represents suit.
-   * Special Unicode symbols will be used for the latter if
-   * <code>Card.fancySymbols</code> is set to <code>true</code>.</p>
-   *
    * @return String representation of this card
    */
   @Override
@@ -58,7 +54,7 @@ public class BaccaratCard extends Card {
    * Tests whether this Baccarat card is equal to another object.
    *
    * @param other Object with which this Baccarat card is being compared
-   * @return true if thing is equal to this Baccarat card, false otherwise
+   * @return true if "other" is equal to this Baccarat card, false otherwise
    */
   @Override
   public boolean equals(Object other) {
@@ -69,7 +65,7 @@ public class BaccaratCard extends Card {
    * Compares this Baccarat card to another, using their natural ordering
    * (by suit, then by rank).
    *
-   * @return A negative integer if this card comes before the other, 0 if
+   * @return A negative integer if this card comes before "other", 0 if
    *   they are the same, a positive integer if this card comes after
    */
   @Override
@@ -87,6 +83,7 @@ public class BaccaratCard extends Card {
    */
   @Override
   public final int value() {
+    // Calculates value of card
     int value = super.value();
     // Value of face cards are 0
     if (value == 10) { value = 0; }

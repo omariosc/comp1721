@@ -17,6 +17,7 @@ public class BaccaratHand {
    * Starts out as empty.
    */
   public BaccaratHand() {
+    // Creates hand as a linked list
     hand = new LinkedList<>();
   }
 
@@ -35,6 +36,7 @@ public class BaccaratHand {
    * @param card BaccaratCard to be added
    */
   public void add(Card card) {
+    // Casts card to BaccaratCard
     hand.add((BaccaratCard) card);
   }
 
@@ -44,11 +46,14 @@ public class BaccaratHand {
    * @return Points value.
    */
   public int value() {
+    // Initial value
     var value = 0;
     // Iterates through cards in hand
     for (BaccaratCard card : hand) {
+      // Increments value by value of card
       value += card.value();
     }
+    // Performs modulus of value by 10 as maximum value is 9
     return value % 10;
   }
 
@@ -58,6 +63,7 @@ public class BaccaratHand {
    * @return true if the hand has a points value of 8 or 9, false otherwise
    */
   public boolean isNatural() {
+    // Returns true if card has value of 8 or 9
     return value() == 8 || value() == 9;
   }
 
@@ -71,15 +77,21 @@ public class BaccaratHand {
    */
   @Override
   public String toString() {
+    // Creates new string builder
     var bld = new StringBuilder();
+    // Iterates through every card in the hand
     for (BaccaratCard card : hand) {
-      bld.append(card.toString());
-      bld.append(" ");
+      // Adds the card string representation to string builder
+      bld.append(card.toString() + " ");
     }
+    // Converts string builder to string
     var string = bld.toString();
+    // If there was a card in the hand
     if (string.length() > 0) {
+      // Removes the final space in the string representation
       string = string.substring(0, string.length() - 1);
     }
+    // Returns the final representation of the hadn
     return string;
   }
 }
