@@ -94,4 +94,13 @@ public class BaccaratHand {
     // Returns the final representation of the hadn
     return string;
   }
+
+  /**
+   * Discards the contents of this hand.
+   * (Used in Baccarat)
+   */
+  public void discard() {
+    // Clears all cards in the hand
+    hand.clear();
+  }
 }
