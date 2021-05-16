@@ -103,4 +103,15 @@ public class BaccaratHand {
     // Clears all cards in the hand
     hand.clear();
   }
+
+  /**
+   * Returns a Card object from the hand
+   * (Used in Bacarrat)
+   * 
+   * @param index Index value of card in the hand
+   * @return the card in the hand
+   */
+  public Card get(int index) {
+    return hand.get(index);
+  }
 }
