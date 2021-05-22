@@ -193,7 +193,8 @@ public class Baccarat {
   /**
    * Checks if either hand are natural.
    * 
-   * <p>If both hands are natural then round is tied.
+   * <p>If both hands are natural then hand with higher natural will win.
+   * If both hands are natural and equal value then it is a tie.
    * If player hand is natural and banker hand is not, then player wins.
    * If banker hand in natural and player hand is not, then banker wins.</p>
    * 
@@ -205,21 +206,37 @@ public class Baccarat {
    * @return 1 if round ends, 0 if round continues
    */
   private static int naturalCheck() {
-    // Checks if both players have natural hands or both hands have same value of 6 or 7
-    if (playerHand.isNatural() && bankerHand.isNatural() ||
-    ((playerHand.value() == 6 && bankerHand.value() == 6) ||
-    (playerHand.value() == 7 && bankerHand.value() == 7))) {
+    // Checks if both players have equal natural hands or both hands have same value of 6 or 7
+    if ((playerHand.isNatural() || playerHand.value() == 6 || playerHand.value() == 7)
+    && playerHand.value() == bankerHand.value()) {
       // Round ties
       roundTie();
       // Round end
       return 1;
+    }
+    // Checks if both hands are natural and one hand is higher value then the other
+    else if (playerHand.isNatural() && bankerHand.isNatural()) {
+      // If player has a value of 9 and banker a value of 8
+      if (playerHand.value() > bankerHand.value()) {
+        // Player wins
+        playerWin();
+        // Round end
+        return 1;
+      }
+      // If banker has a value of 9 and player a value of 8
+      else {
+        // Banker wins
+        bankerWin();
+        // Round end
+        return 1;
+      }
     }
     // If player hand is natural or player scores 7 and banker scores 6
     else if (playerHand.isNatural() || (playerHand.value() == 7 && bankerHand.value() == 6)) { 
       // Player wins
       playerWin();
       // Round end
-      return 1; 
+      return 1;
     }
     // If banker hand is natural or banker scores 7 and player scores 6
     else if (bankerHand.isNatural() || (playerHand.value() == 6 && bankerHand.value() == 7)) {
